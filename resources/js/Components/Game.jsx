@@ -8,6 +8,7 @@ import PlayerHuman from "./PlayerHuman";
 import Difficulty from "./Difficulty";
 import CurrentStats from "./CurrentStats";
 import GameOverDialog from "./GameOverDialog";
+import GlobalLeaderboard from "./GlobalLeaderboard";
 
 const INITIAL_DELAY = 2000;
 const LEVEL_UP = 20;
@@ -176,6 +177,7 @@ function Game() {
                     </GridItem>
                 </Grid>
                 <CurrentStats roundTimes={roundTimes} />
+                <GlobalLeaderboard />
                 <GameOverDialog isOpen={isGameOverOpen} onClose={onGameOverClose} roundTimes={roundTimes} isHighScore={isHighScore.current} />
             </VStack>
         </GoogleReCaptchaProvider>

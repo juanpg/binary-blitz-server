@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
 use Config;
+use Carbon\Carbon;
 
 class ScoreController extends Controller
 {
@@ -74,7 +75,7 @@ class ScoreController extends Controller
             ],
             [
                 'display_name' => $data["player_name"],
-                'date_played' => (new \DateTime())->format('Y-m-d H:i:s'),
+                'date_played' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
                 'total_rounds' => $totalRounds,
                 'avg_time' => $avgTime,
                 'round_times' => $roundTimes,

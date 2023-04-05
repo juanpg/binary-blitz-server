@@ -13,8 +13,12 @@ const submitHighScore = async (round_times, player_name, cookie_id, token) => {
     return response.data.approved;
 }
 
-const getTop50 = async () => {
-    const request = axios.get(baseUrl);
+const getTop50 = async (cookie_id = null) => {
+    const request = axios.get(baseUrl, {
+        params: {
+            cookie_id
+        }
+    });
     const response = await request;
     return response.data;
 }
