@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Score;
 use App\Rules\RoundTimeLimit;
+use App\Mail\HighScore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Config;
 use Carbon\Carbon;
 
@@ -22,7 +24,7 @@ class ScoreController extends Controller
         $cookie_id = $request->input('cookie_id', '');
 
         $top50 = DB::table('scores')
-                    ->selectRaw('cookie_id = ? AS active_player, CASE WHEN approved = 1 THEN display_name ELSE "Pending approval" END as display_name ', [$cookie_id])
+                    ->selectRaw('cookie_id = ? AS active_player, CASE WHEN approved = 1 THEN display_name ELSE "(Pending approval)" END as display_name ', [$cookie_id])
                     ->addSelect('date_played', 'total_rounds', 'avg_time')
                     ->orderBy('total_rounds', 'desc')
                     ->orderBy('avg_time', 'asc')
@@ -50,7 +52,7 @@ class ScoreController extends Controller
         // If we're updating the high score, make sure it is actually a higher score
         if($oldScore !== null && ($oldScore->total_rounds > $totalRounds || ($oldScore->total_rounds === $totalRounds && $oldScore->avg_time < $avgTime ))) {
             return response()->json([
-                'message' => 'The current score is higher'
+                'message' => 'Your current score in the leaderboard is higher'
             ], 409);
         }
 
@@ -84,8 +86,23 @@ class ScoreController extends Controller
             ]
         );
 
+        Mail::to(Config::get('mail.from.address'))->send(new HighScore($score));
+
         return response()->json([
             'approved' => $approved
         ], 201);
+    }
+
+    public function approve(Request $request, Score $score) {
+
+        $score->approved = true;
+        $score->save();
+        return response('approved');
+    }
+
+    public function disapprove(Request $request, Score $score) {
+        $score->approved = false;
+        $score->save();
+        return response('disapproved');
     }
 }

@@ -26,4 +26,6 @@ Route::get('/', function () {
 Route::group(['controller' => ScoreController::class], function() {
     Route::get('/scores', 'list')->name('scores.getTop50');
     Route::post('/scores', 'submit')->middleware('google.recaptcha')->name('scores.submitHighScore');
+    Route::get('/scores/approve/{score}', 'approve')->middleware('signed')->name('scores.approve');
+    Route::get('/scores/disapprove/{score}', 'disapprove')->middleware('signed')->name('scores.disapprove');
 });
