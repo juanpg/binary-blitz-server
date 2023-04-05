@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    'google_captcha_site_key' => env('VITE_GOOGLE_CAPTCHA_SITE_KEY_V3', ''),
+    'google_captcha_secret_key' => env('GOOGLE_CAPTCHA_SECRET_KEY_V3', ''),
+    'ms_moderator_key' => env('MS_MODERATOR_KEY', ''),
+    'ms_moderator_url' => env('MS_MODERATOR_URL', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

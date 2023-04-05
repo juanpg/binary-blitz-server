@@ -1,18 +1,22 @@
+import axios from "axios";
+
 const baseUrl = '/scores';
 
-const check = async (roundTimes) => {
-    const response = await fetch(`${baseUrl}/check`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(roundTimes)
+const submitHighScore = async (round_times, player_name, cookie_id, token) => {
+    const response = await axios.post(baseUrl, {
+        token,
+        cookie_id,
+        player_name,
+        round_times
     });
+
+    return response.data.approved;
 }
 
-const add = async (roundTimes, playerName, cookieID) => {
-
+const getTop50 = async () => {
+    const request = axios.get(baseUrl);
+    const response = await request;
+    return response.data;
 }
 
-export default { check, add }
+export default { submitHighScore, getTop50 }

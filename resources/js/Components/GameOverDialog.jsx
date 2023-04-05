@@ -3,6 +3,7 @@ import { AppContext } from '../Context/appContext';
 import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Alert, AlertTitle, AlertDescription, Icon, Box, Text, useColorModeValue } from '@chakra-ui/react';
 import { getCookieConsentValue } from 'react-cookie-consent';
 import SubmitScore from './SubmitScore';
+import scoresDB from '../Services/scores';
 
 const GameOverAlert = ({status, backgroundColor, iconColor, icon, children}) => {
     return (
@@ -84,13 +85,15 @@ const YouLost = () => {
     );
 }
 
-const GameOverDialog = ({ isOpen, onClose, isHighScore }) => {
+const GameOverDialog = ({ roundTimes, isOpen, onClose, isHighScore }) => {
     const { cookieID } = useContext(AppContext);
     const playerNameRef = useRef(null);
 
-    const onHighScoreSubmit = (playerName, token) => {
+    const onHighScoreSubmit = async (playerName, token) => {
         localStorage.setItem('playerName', playerName);
-        console.log(playerName, token);
+
+        const playerNameApproved = await scoresDB.submitHighScore(roundTimes, playerName, cookieID, token);
+        
         onClose();
     }
 

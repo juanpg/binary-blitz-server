@@ -75,3 +75,4 @@ body {
     border-style: dotted;
   }
   
+  .grecaptcha-badge { visibility: hidden; }

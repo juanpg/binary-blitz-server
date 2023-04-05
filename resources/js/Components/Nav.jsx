@@ -54,9 +54,6 @@ function Nav() {
                                 }
                             </svg>
                         </Button>
-                        <Button onClick={() => {resetCookieConsentValue(); document.cookie = 'CookieConsent=; Max-Age=0;'; localStorage.removeItem('cookieID'); }} colorScheme='green'>
-                            Reset
-                        </Button>
                     </HStack>
                 </HStack>
                 

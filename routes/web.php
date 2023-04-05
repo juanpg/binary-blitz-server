@@ -24,5 +24,6 @@ Route::get('/', function () {
 });
 
 Route::group(['controller' => ScoreController::class], function() {
-    Route::get('/scores', 'test')->name('scores.get');
+    Route::get('/scores', 'list')->name('scores.getTop50');
+    Route::post('/scores', 'submit')->middleware('google.recaptcha')->name('scores.submitHighScore');
 });
