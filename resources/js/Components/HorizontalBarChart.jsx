@@ -3,8 +3,6 @@ import React from 'react';
 
 function Bar({count, level, max}) {
   const barWidth = Math.max(5, (count / max) * 100);
-//   const valueLabelPosition = `calc(${barWidth}% + 5px)`;
-
   const labels = {
     '0': '0 - 20',
     '1': '21 - 40',

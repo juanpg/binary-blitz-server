@@ -76,7 +76,6 @@ function CurrentChart({roundTimes}) {
 
     const level = Math.floor(roundTimes.length / 20);
     for(let i = 1; i <= Math.min(5, level); i++) {
-        // console.log(i, i * 20, level);
         const dataset = {
             label: `Level ${i}`,
             data: [{x: i*20, y: 0}, {x: i*20, y:Math.max(6, maxTime)}],

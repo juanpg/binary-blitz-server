@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Heading, Text,Button, Flex, TableContainer, Table, Thead, Tbody, Tr, Th, Td, Spinner } from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, TableContainer, Table, Thead, Tbody, Tr, Th, Td, Spinner } from '@chakra-ui/react';
 import { useContext, useEffect, useCallback, useState } from 'react';
 import { AppContext } from '../Context/appContext';
 import scoresDB from '../Services/scores';

@@ -1,28 +1,13 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Button, FormControl, FormErrorMessage, FormLabel, Box, Input, Text, Link, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
-import { useState, useEffect, forwardRef, useCallback } from 'react';
+import { useState, forwardRef } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 const SubmitScore = forwardRef(({onHighScoreSubmit}, ref) => {
     const { executeRecaptcha } = useGoogleReCaptcha();
     const [submitError, setSubmitError] = useState(null);
-    // const [token, setToken] = useState("");
-
-    // const handleReCaptchaVerify = useCallback(async () => {
-    //     if(!executeRecaptcha) {
-    //         return;
-    //     }
-
-    //     const newToken = await executeRecaptcha('score');
-    //     setToken(newToken);
-
-    // }, [executeRecaptcha]);
-
-    // useEffect(() => {
-    //     handleReCaptchaVerify();
-    // }, [handleReCaptchaVerify]);
-
+    
     return (
         <Formik
             initialValues={{

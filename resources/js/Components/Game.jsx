@@ -37,9 +37,6 @@ function Game() {
     const nextRound = () => {
         if(gameOver) {
             setGameOver(go => false);
-            // setCurrentRound(lvl => 1);
-            // setTotalTime(ttl => 0);
-            // setLastRoundTime(lrt => 0);
             setRoundTimes(rt => []);
         }
         setGoalNumber(gl => {
@@ -104,7 +101,7 @@ function Game() {
         return () => {
             clearInterval(intervalId);
         };
-    }, [playing, currentBit, delay, roundTimes, updateStats, onGameOverOpen]);   // , updateOverallStats
+    }, [playing, currentBit, delay, roundTimes, updateStats, onGameOverOpen]);
 
     useEffect(() => {
         const onKeyDown = (event) => {

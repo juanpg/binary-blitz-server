@@ -21,7 +21,6 @@ function PlayerBit({playing, bit, value, level, onChange, mappedKey}) {
     }
 
     useEffect(() => {
-        // const thisLetter = [';', 'l', 'k', 'j', 'f', 'd', 's', 'a'][bit];
         const thisLetter = mappedKey.toLowerCase();
 
         const onKeyDown = (event) => {

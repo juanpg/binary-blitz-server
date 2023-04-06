@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { getCookieConsentValue } from "react-cookie-consent";
 import { v4 as uuidv4 } from 'uuid';
 
 const AppContext = createContext();
@@ -60,21 +59,6 @@ function AppContextProvider({ children }) {
     localStorage.setItem('stats', JSON.stringify(newStats));
     setStats(st => newStats);
   }
-
-  // const cookieID = () => {
-
-  //   const constented = getCookieConsentValue();
-  //   if(constented === true) {
-  //     let id = localStorage.getItem('cookieID');
-  //     if(id === null) {
-  //       id = uuidv4();
-  //       localStorage.setItem('cookieID', id);
-  //     }
-  //     return id;
-  //   }
-
-  //   return constented;
-  // }
 
   const acceptedCookie = () => {
     let id = localStorage.getItem('cookieID');
