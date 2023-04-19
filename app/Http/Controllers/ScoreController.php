@@ -24,8 +24,8 @@ class ScoreController extends Controller
         $cookie_id = $request->input('cookie_id', '');
 
         $top50 = DB::table('scores')
-                    ->selectRaw('cookie_id = ? AS active_player, CASE WHEN approved = 1 THEN display_name ELSE "(Pending approval)" END as display_name ', [$cookie_id])
-                    ->addSelect('date_played', 'total_rounds', 'avg_time')
+                    ->selectRaw('cookie_id = ? AS active_player, CASE WHEN approved = 1 THEN display_name ELSE "(Pending approval)" END as display_name, DATE_FORMAT(date_played, "%Y-%m-%dT%TZ") AS date_played ', [$cookie_id])
+                    ->addSelect('total_rounds', 'avg_time')
                     ->orderBy('total_rounds', 'desc')
                     ->orderBy('avg_time', 'asc')
                     ->limit(50)

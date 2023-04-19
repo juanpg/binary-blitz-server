@@ -44,7 +44,7 @@ function GlobalLeaderboard() {
                                 </Thead>
                                 <Tbody>
                                     {entries.map((entry, idx) => {
-                                        const dt = new Date(`${entry.date_played}Z`);
+                                        const dt = new Date(`${entry.date_played}`);
                                         return (
                                             <Tr key={idx} background={entry.active_player === 1 ? 'blue.500' : ''}>
                                                 <Th scope='row'>{idx + 1}</Th>
